@@ -8,12 +8,13 @@ import MoviePage from "../../Pages/MoviePage"
 import AddReview from "../../Pages/AddReview"
 import MyList from "../../Pages/MyList"
 import PrivateRoute from "../PrivateRoute/PrivateRoute"
+import { Films } from "../../types/films"
 
 type AppScreenProps = {
-
+  films: Films[];
 }
 
-const App: FC<AppScreenProps> = ({}) => {
+const App: FC<AppScreenProps> = ({films}) => {
   return (
       <BrowserRouter>
         <Routes>

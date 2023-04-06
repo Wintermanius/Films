@@ -36,9 +36,6 @@ const MyList: FC<MyListProps> = ({}) => {
 
         <div className="catalog__films-list">
         <FilmCard />
-        <FilmCard />
-        <FilmCard />
-        <FilmCard />
         </div>
       </section>
 

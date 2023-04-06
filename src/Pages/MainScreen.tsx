@@ -91,13 +91,6 @@ const MainScreen: FC<MainScreenProps> = ({}) => {
 
         <div className="catalog__films-list">
         <FilmCard />
-        <FilmCard />
-        <FilmCard />
-        <FilmCard />
-        <FilmCard />
-        <FilmCard />
-        <FilmCard />
-        <FilmCard />
         </div>
 
         <div className="catalog__more">
