@@ -8,17 +8,17 @@ import MoviePage from "../../Pages/MoviePage"
 import AddReview from "../../Pages/AddReview"
 import MyList from "../../Pages/MyList"
 import PrivateRoute from "../PrivateRoute/PrivateRoute"
-import { Films } from "../../types/films"
+import { FilmType } from "../../types/film-type"
 
 type AppScreenProps = {
-  films: Films[];
+  films: FilmType[];
 }
 
 const App: FC<AppScreenProps> = ({films}) => {
   return (
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Main} element={<MainScreen />}/>
+          <Route path={AppRoute.Main} element={<MainScreen films={films} />}/>
           <Route path={AppRoute.SingIn} element={<SingIn />}/>
           <Route path={AppRoute.MyList} 
                  element={

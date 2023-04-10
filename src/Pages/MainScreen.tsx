@@ -2,12 +2,14 @@ import { FC } from "react"
 import "../css/main.css"
 import FilmCard from "../Components/FilmCard/FilmCard"
 import Header from "../Components/Header/Header"
+import { FilmType } from "../types/film-type"
+import FilmList from "../Components/FilmList/FilmList"
 
 type MainScreenProps = {
-  
+  films: FilmType[]
 }
 
-const MainScreen: FC<MainScreenProps> = ({}) => {
+const MainScreen: FC<MainScreenProps> = ({ films }) => {
   return (
     <>
       <section className="film-card">
@@ -90,7 +92,7 @@ const MainScreen: FC<MainScreenProps> = ({}) => {
         </ul>
 
         <div className="catalog__films-list">
-        <FilmCard />
+          <FilmList films={films} />
         </div>
 
         <div className="catalog__more">

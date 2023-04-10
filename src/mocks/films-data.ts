@@ -6,9 +6,9 @@ import iK from "../img/we-need-to-talk-about-kevin.jpg"
 import iWWDitS from "../img/what-we-do-in-the-shadows.jpg"
 import iR from "../img/revenant.jpg"
 import iJE from "../img/johnny-english.jpg"
-import { Films } from "../types/films"
+import { FilmType } from "../types/film-type"
 
-export const films: Films[] = [
+export const films: FilmType[] = [
   {
     id: 1,
     title: 'Fantastic Beasts: The Crimes of Grindelwald',

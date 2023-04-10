@@ -1,14 +1,15 @@
 import { FC } from "react"
-import { Films } from "../../types/films"
+import { FilmType } from "../../types/film-type"
 
 type FilmCardProps = {
-  films: Films
+  film: FilmType
 }
 
-const FilmCard: FC<FilmCardProps> = ({films}) => {
-  const {title, poster} = films
+const FilmCard: FC<FilmCardProps> = ({ film }) => {
+  const { title, poster, id } = film
+
   return (
-    <article className="small-film-card catalog__films-card">
+  <article className="small-film-card catalog__films-card" key = {id}>
       <div className="small-film-card__image">
         <img src={poster} width="280" height="175" />
       </div>
