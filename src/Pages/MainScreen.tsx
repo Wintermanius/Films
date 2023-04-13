@@ -1,6 +1,5 @@
 import { FC } from "react"
-import "../css/main.css"
-import FilmCard from "../Components/FilmCard/FilmCard"
+import "../assets/css/main.css"
 import Header from "../Components/Header/Header"
 import { FilmType } from "../types/film-type"
 import FilmList from "../Components/FilmList/FilmList"
@@ -24,7 +23,7 @@ const MainScreen: FC<MainScreenProps> = ({ films }) => {
       <div className="film-card__wrap">
         <div className="film-card__info">
           <div className="film-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src="./img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
           </div>
 
           <div className="film-card__desc">

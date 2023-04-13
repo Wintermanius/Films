@@ -1,14 +1,8 @@
 import { FC } from "react"
 import Logo from "../Logo/Logo"
-import styled from "styled-components"
 
 
-
-type HeaderProps = {
-
-}
-
-const Header: FC<HeaderProps> = ({}) => {
+const Header: FC = ({}) => {
   return (
     <header className="page-header film-card__head">
         <Logo />

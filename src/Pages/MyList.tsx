@@ -1,6 +1,7 @@
 import { FC } from "react"
-import { Link } from "react-router-dom"
-import FilmCard from "../Components/FilmCard/FilmCard"
+import Logo from "../Components/Logo/Logo"
+import FilmList from "../Components/FilmList/FilmList"
+import { films } from "../mocks/films-data"
 
 type MyListProps = {
   
@@ -10,13 +11,7 @@ const MyList: FC<MyListProps> = ({}) => {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
-        <div className="logo">
-          <Link to="/" className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
+        <Logo />
 
         <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>
         <ul className="user-block">
@@ -35,7 +30,7 @@ const MyList: FC<MyListProps> = ({}) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
-        {/* <FilmList /> */}
+        <FilmList films={films}/>
         </div>
       </section>
 

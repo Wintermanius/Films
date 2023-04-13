@@ -28,7 +28,7 @@ const App: FC<AppScreenProps> = ({films}) => {
                  }
           /> 
           <Route path={AppRoute.Film} element={<MoviePage />}/>
-          <Route path={AppRoute.AddReviev} element={<AddReview />}/>
+          <Route path={AppRoute.AddReview} element={<AddReview />}/>
           <Route path={AppRoute.Player} element={<Player />}/>
         </Routes>
       </BrowserRouter>
