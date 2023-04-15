@@ -7,8 +7,9 @@ type PlayerProps = {
 const Player: FC<PlayerProps> = ({}) => {
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
 
+      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+ 
       <button type="button" className="player__exit">Exit</button>
 
       <div className="player__controls">

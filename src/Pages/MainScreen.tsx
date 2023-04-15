@@ -1,14 +1,24 @@
-import { FC } from "react"
+import { FC, useEffect } from "react"
 import "../assets/css/main.css"
 import Header from "../Components/Header/Header"
 import { FilmType } from "../types/film-type"
 import FilmList from "../Components/FilmList/FilmList"
+import { useEvent, useStore } from "effector-react"
+import { $films, updateFilms } from "../store/store"
 
 type MainScreenProps = {
   films: FilmType[]
 }
 
-const MainScreen: FC<MainScreenProps> = ({ films }) => {
+const MainScreen: FC<MainScreenProps> = ({films}) => {
+  const fechFilms = useEvent(updateFilms)
+  const films1 = useStore($films)
+  console.log(films1)
+  
+  useEffect(() => {
+    fechFilms()
+  }, [])
+
   return (
     <>
       <section className="film-card">

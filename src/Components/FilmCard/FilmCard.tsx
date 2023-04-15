@@ -34,5 +34,3 @@ const FilmCard: FC<FilmCardProps> = ({ film }) => {
 }
 
 export default FilmCard
-
-{/* <VideoPlayer films={film} /> */}
