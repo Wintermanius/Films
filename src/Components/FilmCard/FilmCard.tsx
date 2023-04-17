@@ -1,6 +1,7 @@
 import { FC, MouseEvent, useRef, useState } from "react"
 import { FilmType } from "../../types/film-type"
 import VideoPlayer from "../VideoPlayer/VideoPlayer"
+import { Link } from "react-router-dom"
 
 type FilmCardProps = {
   film: FilmType
@@ -27,7 +28,7 @@ const FilmCard: FC<FilmCardProps> = ({ film }) => {
         <VideoPlayer isPlay={isPlay} films={film} />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{name}</a>
+        <Link className="small-film-card__link" to="/films/:id">{name}</Link>
       </h3>
     </article>
   )
