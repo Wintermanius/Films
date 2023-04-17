@@ -7,7 +7,7 @@ type VideoPlayerProps = {
 }
 
 const VideoPlayer: FC<VideoPlayerProps> = ({isPlay, films}) => {
-  const {videoLink, posterImage} = films
+  const {videoLink, previewImage} = films
 
   const videoRef = useRef<HTMLVideoElement | null>(null)
 
@@ -22,7 +22,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({isPlay, films}) => {
   }, [isPlay])
 
   return (
-      <video ref={videoRef} muted src={videoLink} className="player__video" poster={posterImage} loop></video>
+      <video ref={videoRef} muted src={videoLink} className="player__video" poster={previewImage} loop></video>
   )
 }
 
