@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './Components/App/App';
-import { films } from './mocks/films-data';
+import { $films } from './store/store';
+
 
 
 const root = ReactDOM.createRoot(
@@ -9,6 +10,6 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App films = {films} />
+    <App  />
   </React.StrictMode>
 );

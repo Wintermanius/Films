@@ -3,20 +3,18 @@ import "../assets/css/main.css"
 import Header from "../Components/Header/Header"
 import { FilmType } from "../types/film-type"
 import FilmList from "../Components/FilmList/FilmList"
-import { useEvent, useStore } from "effector-react"
-import { $films, updateFilms } from "../store/store"
+import { useStore } from "effector-react"
+import { $films } from "../store/store"
+import { fetchFilmsFx } from "../store/api"
 
-type MainScreenProps = {
-  films: FilmType[]
-}
 
-const MainScreen: FC<MainScreenProps> = ({films}) => {
-  const fechFilms = useEvent(updateFilms)
+const MainScreen: FC = () => {
+
   const films1 = useStore($films)
   console.log(films1)
   
   useEffect(() => {
-    fechFilms()
+    fetchFilmsFx()
   }, [])
 
   return (
@@ -101,7 +99,7 @@ const MainScreen: FC<MainScreenProps> = ({films}) => {
         </ul>
 
         <div className="catalog__films-list">
-          <FilmList films={films} />
+          <FilmList films={films1}  />
         </div>
 
         <div className="catalog__more">

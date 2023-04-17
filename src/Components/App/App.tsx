@@ -10,15 +10,13 @@ import MyList from "../../Pages/MyList"
 import PrivateRoute from "../PrivateRoute/PrivateRoute"
 import { FilmType } from "../../types/film-type"
 
-type AppScreenProps = {
-  films: FilmType[];
-}
 
-const App: FC<AppScreenProps> = ({films}) => {
+
+const App: FC = () => {
   return (
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Main} element={<MainScreen films={films} />}/>
+          <Route path={AppRoute.Main} element={<MainScreen />}/>
           <Route path={AppRoute.SingIn} element={<SingIn />}/>
           <Route path={AppRoute.MyList} 
                  element={

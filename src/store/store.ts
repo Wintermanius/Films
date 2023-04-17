@@ -1,10 +1,6 @@
 import { createEvent, createStore, sample } from "effector";
 import { fetchFilmsFx } from "./api";
 
-export const updateFilms = createEvent()
-export const $films = createStore([]).on(fetchFilmsFx.doneData, (_, result) => result)
+export const $films = createStore([])
 
-sample({
-  clock: updateFilms,
-  target: fetchFilmsFx,
-})
+$films.on(fetchFilmsFx.doneData, (_, result) => result)

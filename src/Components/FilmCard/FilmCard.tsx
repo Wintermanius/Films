@@ -8,7 +8,7 @@ type FilmCardProps = {
 
 const FilmCard: FC<FilmCardProps> = ({ film }) => {
   const [isPlay, setIsPlay] = useState<boolean>(false)
-  const { title, poster, id, video } = film
+  const { name, id } = film
 
 
   const videoRef = useRef(null)
@@ -27,7 +27,7 @@ const FilmCard: FC<FilmCardProps> = ({ film }) => {
         <VideoPlayer isPlay={isPlay} films={film} />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{title}</a>
+        <a className="small-film-card__link" href="film-page.html">{name}</a>
       </h3>
     </article>
   )

@@ -1,13 +1,10 @@
 import { FC } from "react"
 import Logo from "../Components/Logo/Logo"
 import FilmList from "../Components/FilmList/FilmList"
-import { films } from "../mocks/films-data"
 
-type MyListProps = {
-  
-}
 
-const MyList: FC<MyListProps> = ({}) => {
+
+const MyList: FC = () => {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -30,7 +27,7 @@ const MyList: FC<MyListProps> = ({}) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
-        <FilmList films={films}/>
+        <FilmList films={[]} />
         </div>
       </section>
 
