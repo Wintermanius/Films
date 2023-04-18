@@ -86,7 +86,7 @@ const MoviePage: FC<MoviePageProps> = ({film}) => {
 
                 <p className="film-card__director"><strong>Director: {director}</strong></p>
 
-                <p className="film-card__starring"><strong>Starring: {starring} and other</strong></p>
+                <p className="film-card__starring"><strong>Starring: {starring[0] + ', ' + starring[1] + ', ' + starring[2]} and other</strong></p>
               </div>
             </div>
           </div>
