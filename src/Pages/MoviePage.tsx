@@ -1,7 +1,11 @@
-import { FC } from "react"
+import { FC, useEffect, useState } from "react"
 import Header from "../Components/Header/Header"
 import { Link, useParams } from "react-router-dom"
 import { FilmType } from "../types/film-type"
+import FilmList from "../Components/FilmList/FilmList"
+import { fetchSimilarFilmsFx } from "../store/api"
+import { useUnit } from "effector-react"
+import { $similarFilms } from "../store/store"
 
 type MoviePageProps = {
   films: FilmType[]
@@ -10,8 +14,13 @@ type MoviePageProps = {
 const MoviePage: FC<MoviePageProps> = ({films}) => {
   const params = useParams()
   console.log(params)
+  const similarFilms = useUnit($similarFilms)
   
   const film = films.length ? films.find((film) => (film.id === Number(params.id))) : null
+
+  useEffect(() => {
+    fetchSimilarFilmsFx({ filmId: Number(params.id) })
+  }, [params.id])
 
   return (
     <>
@@ -102,41 +111,7 @@ const MoviePage: FC<MoviePageProps> = ({films}) => {
             <h2 className="catalog__title">More like this</h2>
 
             <div className="catalog__films-list">
-              <article className="small-film-card catalog__films-card">
-                <div className="small-film-card__image">
-                  <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-                </div>
-                <h3 className="small-film-card__title">
-                  <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-                </h3>
-              </article>
-
-              <article className="small-film-card catalog__films-card">
-                <div className="small-film-card__image">
-                  <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-                </div>
-                <h3 className="small-film-card__title">
-                  <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
-                </h3>
-              </article>
-
-              <article className="small-film-card catalog__films-card">
-                <div className="small-film-card__image">
-                  <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-                </div>
-                <h3 className="small-film-card__title">
-                  <a className="small-film-card__link" href="film-page.html">Macbeth</a>
-                </h3>
-              </article>
-
-              <article className="small-film-card catalog__films-card">
-                <div className="small-film-card__image">
-                  <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-                </div>
-                <h3 className="small-film-card__title">
-                  <a className="small-film-card__link" href="film-page.html">Aviator</a>
-                </h3>
-              </article>
+              <FilmList films={similarFilms} />
             </div>
           </section>
 
