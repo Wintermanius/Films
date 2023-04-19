@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { FilmType } from "../../types/film-type"
 import Header from "../Header/Header"
+import { Link } from "react-router-dom"
 
 type FilmCardWrapProps = {
   film: FilmType
@@ -8,7 +9,7 @@ type FilmCardWrapProps = {
 
 const FilmCardWrap: FC<FilmCardWrapProps> = ({film}) => {
 
-  const {posterImage, name, genre, released, backgroundImage } = film
+  const {posterImage, name, genre, released, backgroundImage, id } = film
 
   return (
     <>
@@ -34,12 +35,14 @@ const FilmCardWrap: FC<FilmCardWrapProps> = ({film}) => {
             </p>
 
             <div className="film-card__buttons">
-             <button className="btn btn--play film-card__button" type="button">
+
+             <Link to={`/player/${id}`} className="btn btn--play film-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
-              </button>
+              </Link>
+
               <button className="btn btn--list film-card__button" type="button">
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>
@@ -47,6 +50,7 @@ const FilmCardWrap: FC<FilmCardWrapProps> = ({film}) => {
                 <span>My list</span>
                 <span className="film-card__count">9</span>
               </button>
+
             </div>
           </div>
         </div>

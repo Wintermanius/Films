@@ -1,6 +1,6 @@
 import { FC, MouseEvent, useRef, useState } from "react"
 import { FilmType } from "../../types/film-type"
-import VideoPlayer from "../VideoPlayer/VideoPlayer"
+import VideoPlayer from "../PreviewVideoPlayer/PreviewVideoPlayer"
 import { Link } from "react-router-dom"
 
 type FilmCardProps = {
