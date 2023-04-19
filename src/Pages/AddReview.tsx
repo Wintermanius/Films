@@ -1,19 +1,30 @@
 import { FC } from "react"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import Logo from "../Components/Logo/Logo"
 import CommentForm from "../Components/CommentForm/CommentForm"
 import BGtGBh from "../assets/img/bg-the-grand-budapest-hotel.jpg"
 import Avatar from "../assets/img/avatar.jpg"
 import tGBhp from "../assets/img/the-grand-budapest-hotel-poster.jpg"
+import { FilmType } from "../types/film-type"
 
+type AddReviewProps = {
+  films: FilmType[]
+}
 
-const AddReview: FC = ({}) => {
+const AddReview: FC<AddReviewProps> = ({films}) => {
+
+  const params = useParams()
+
+  const film = films.length ? films.find((film) => (film.id === Number(params.id))) : null
+  
+
   return (
     <>
-      <section className="film-card film-card--full">
+      {film && <>
+        <section className="film-card film-card--full">
         <div className="film-card__header">
           <div className="film-card__bg">
-            <img src= {BGtGBh} alt="The Grand Budapest Hotel" />
+            <img src= {film.backgroundImage} alt={film.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -24,7 +35,7 @@ const AddReview: FC = ({}) => {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <a href="film-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                  <a href="film-page.html" className="breadcrumbs__link">{film.name}</a>
                 </li>
                 <li className="breadcrumbs__item">
                   <Link to="/review" className="breadcrumbs__link">Add review</Link>
@@ -45,7 +56,7 @@ const AddReview: FC = ({}) => {
           </header>
 
           <div className="film-card__poster film-card__poster--small">
-            <img src={tGBhp} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={film.posterImage} alt={film.name + 'poster'} width="218" height="327" />
           </div>
         </div>
 
@@ -54,6 +65,7 @@ const AddReview: FC = ({}) => {
         </div>
 
       </section>
+      </>}
     </>
   )
 }

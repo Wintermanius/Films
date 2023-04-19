@@ -44,7 +44,7 @@ const App: FC = () => {
                  }
           /> 
           <Route path={AppRoute.Film} element={<MoviePage films={films1}  />}/>
-          <Route path={AppRoute.AddReview} element={<AddReview />}/>
+          <Route path={AppRoute.AddReview} element={<AddReview films={films1} />}/>
           <Route path={AppRoute.Player} element={<Player />}/>
         </Routes>
       </BrowserRouter>
