@@ -1,12 +1,21 @@
-import { FC } from "react"
+import { FC, FormEvent, useState } from "react"
 import { Link } from "react-router-dom"
 import Logo from "../Components/Logo/Logo"
+import { loginFx } from "../store/api"
 
-type SingInProps = {
+const SingIn: FC = () => {
 
-}
+  const[email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
 
-const SingIn: FC<SingInProps> = ({}) => {
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault()
+
+    if (!email || !password) return
+
+    loginFx({ email, password })
+  }
+
   return (
     <>
       <div className="user-page">
@@ -17,14 +26,14 @@ const SingIn: FC<SingInProps> = ({}) => {
         </header>
 
         <div className="sign-in user-page__content">
-          <form action="#" className="sign-in__form">
+          <form action="#" className="sign-in__form" onSubmit={handleSubmit}>
             <div className="sign-in__fields">
               <div className="sign-in__field">
-                <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
+                <input value={email} onChange={(e) => setEmail(e.target.value)} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
               </div>
               <div className="sign-in__field">
-                <input className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
+                <input value={password} onChange={(e) => setPassword(e.target.value)} className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
                 <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
               </div>
             </div>

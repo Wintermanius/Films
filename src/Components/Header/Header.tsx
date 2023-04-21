@@ -1,6 +1,7 @@
 import { FC } from "react"
 import Logo from "../Logo/Logo"
 import Avatar from "../../assets/img/avatar.jpg"
+import { Link } from "react-router-dom"
 
 const Header: FC = ({}) => {
   return (
@@ -14,7 +15,7 @@ const Header: FC = ({}) => {
           </div>
         </li>
         <li className="user-block__item">
-          <a className="user-block__link">Sign out</a>
+          <Link to='/login' className="user-block__link">Sign in</Link>
         </li>
       </ul>
     </header>

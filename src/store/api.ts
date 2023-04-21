@@ -1,20 +1,32 @@
 import { createEffect } from "effector";
 import { FilmType } from "../types/film-type";
+import $axios from "../services/axios";
+import { UserType } from "../types/userType";
+import { saveToken } from "../services/token";
+import { LoginFormType } from "../types/loginFormType";
 
 export const fetchFilmsFx = createEffect(async () => {
-  const response = await fetch('https://11.react.pages.academy/wtw/films')
-  const result = await response.json()
-  return result
+  const response = await $axios.get('/films')
+  return response.data
 })
 
 export const fetchOneFilmFx = createEffect(async () => {
-  const response = await fetch('https://11.react.pages.academy/wtw/promo')
-  const result = await response.json()
-  return result
+  const response = await $axios.get('/promo')
+  return response.data
 })
 
 export const fetchSimilarFilmsFx = createEffect<{ filmId: number }, FilmType[], Error>(async ({ filmId: filmId}) => {
-  const response = await fetch(`https://11.react.pages.academy/wtw/films/${filmId}/similar`)
-  const result = await response.json()
-  return result
+  const response = await $axios.get(`/films/${filmId}/similar`)
+  return response.data
+})
+
+export const loginFx = createEffect<LoginFormType , UserType, Error>(async ({ email, password }) => {
+  const response = await $axios.post('/login', { email, password })
+  saveToken(response.data.token);
+  return response.data
+})
+
+export const fetchUserFx = createEffect<void , UserType, Error>(async () => {
+  const response = await $axios.get('/login')
+  return response.data
 })
