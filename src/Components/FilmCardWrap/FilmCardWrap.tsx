@@ -2,12 +2,14 @@ import { FC } from "react"
 import { FilmType } from "../../types/film-type"
 import Header from "../Header/Header"
 import { Link } from "react-router-dom"
+import { UserType } from "../../types/userType"
 
 type FilmCardWrapProps = {
   film: FilmType
+  user?: UserType | null
 }
 
-const FilmCardWrap: FC<FilmCardWrapProps> = ({film}) => {
+const FilmCardWrap: FC<FilmCardWrapProps> = ({film, user}) => {
 
   const {posterImage, name, genre, released, backgroundImage, id } = film
 
@@ -19,7 +21,7 @@ const FilmCardWrap: FC<FilmCardWrapProps> = ({film}) => {
 
       <h1 className="visually-hidden">WTW</h1>
 
-      <Header />
+      <Header user={user} />
 
       <div className="film-card__wrap">
         <div className="film-card__info">

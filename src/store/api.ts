@@ -2,7 +2,7 @@ import { createEffect } from "effector";
 import { FilmType } from "../types/film-type";
 import $axios from "../services/axios";
 import { UserType } from "../types/userType";
-import { saveToken } from "../services/token";
+import { dropToken, saveToken } from "../services/token";
 import { LoginFormType } from "../types/loginFormType";
 
 export const fetchFilmsFx = createEffect(async () => {
@@ -22,11 +22,16 @@ export const fetchSimilarFilmsFx = createEffect<{ filmId: number }, FilmType[], 
 
 export const loginFx = createEffect<LoginFormType , UserType, Error>(async ({ email, password }) => {
   const response = await $axios.post('/login', { email, password })
-  saveToken(response.data.token);
+  saveToken(response.data.token)
   return response.data
 })
 
 export const fetchUserFx = createEffect<void , UserType, Error>(async () => {
   const response = await $axios.get('/login')
   return response.data
+})
+
+export const logoutFx = createEffect<void, void, Error>(async () => {
+  await $axios.delete('/logout')
+  dropToken()
 })

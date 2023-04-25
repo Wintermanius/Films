@@ -8,9 +8,8 @@ import MoviePage from "../../Pages/MoviePage"
 import AddReview from "../../Pages/AddReview"
 import MyList from "../../Pages/MyList"
 import PrivateRoute from "../PrivateRoute/PrivateRoute"
-import { FilmType } from "../../types/film-type"
 import { useStore } from "effector-react"
-import { $film, $films } from "../../store/store"
+import { $film, $films, $user } from "../../store/store"
 import { fetchFilmsFx, fetchPromoFilmFx, fetchUserFx } from "../../store/api"
 
 
@@ -26,11 +25,12 @@ const App: FC = () => {
   }, [])
 
   const film1 = useStore($film)
+  const user1 = useStore($user)
 
   return (
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Main} element={<MainScreen film1={film1} films1={films1}  />}/>
+          <Route path={AppRoute.Main} element={<MainScreen user={user1} film={film1} films={films1}  />}/>
           <Route path={AppRoute.SingIn} element={<SingIn />}/>
           <Route path={AppRoute.MyList} 
                  element={

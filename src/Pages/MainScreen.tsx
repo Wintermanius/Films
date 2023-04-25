@@ -3,21 +3,23 @@ import "../assets/css/main.css"
 import { FilmType } from "../types/film-type"
 import FilmCardWrap from "../Components/FilmCardWrap/FilmCardWrap"
 import FilterFilms from "../Components/FilterFilms/FilterFilms"
+import { UserType } from "../types/userType"
 
 
 type MainScreenProps = {
-  film1: FilmType | null
-  films1: FilmType[]
+  film: FilmType | null
+  films: FilmType[]
+  user?: UserType | null
 }
 
-const MainScreen: FC<MainScreenProps> = ({film1, films1}) => { 
+const MainScreen: FC<MainScreenProps> = ({film, films, user}) => { 
 
   return (
     <>
       <section className="film-card">
-        {film1 && <FilmCardWrap film={film1} />}
+        {film && <FilmCardWrap user={user} film={film} />}
       </section>
-      <FilterFilms films={films1} />
+      <FilterFilms films={films} />
     </>
   )
 }
