@@ -11,7 +11,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute"
 import { FilmType } from "../../types/film-type"
 import { useStore } from "effector-react"
 import { $film, $films } from "../../store/store"
-import { fetchFilmsFx, fetchOneFilmFx, fetchUserFx } from "../../store/api"
+import { fetchFilmsFx, fetchPromoFilmFx, fetchUserFx } from "../../store/api"
 
 
 
@@ -22,7 +22,7 @@ const App: FC = () => {
   useEffect(() => {
     fetchUserFx()
     fetchFilmsFx()
-    fetchOneFilmFx()
+    fetchPromoFilmFx()
   }, [])
 
   const film1 = useStore($film)

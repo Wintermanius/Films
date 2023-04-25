@@ -10,7 +10,7 @@ export const fetchFilmsFx = createEffect(async () => {
   return response.data
 })
 
-export const fetchOneFilmFx = createEffect(async () => {
+export const fetchPromoFilmFx = createEffect(async () => {
   const response = await $axios.get('/promo')
   return response.data
 })
