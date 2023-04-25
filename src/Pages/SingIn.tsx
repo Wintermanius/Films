@@ -1,5 +1,5 @@
 import { FC, FormEvent, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Logo from "../Components/Logo/Logo"
 import { loginFx } from "../store/api"
 
@@ -14,6 +14,13 @@ const SingIn: FC = () => {
     if (!email || !password) return
 
     loginFx({ email, password })
+  }
+  
+  const navigate = useNavigate();
+  const handleClick = () => {
+    if (email && password) {
+      navigate("/");
+    }
   }
 
   return (
@@ -38,7 +45,7 @@ const SingIn: FC = () => {
               </div>
             </div>
             <div className="sign-in__submit">
-              <button className="sign-in__btn" type="submit">Sign in</button>
+              <button className="sign-in__btn" type="submit" onClick={handleClick}>Sign in</button>
             </div>
           </form>
         </div>
