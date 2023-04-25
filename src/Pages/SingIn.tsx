@@ -1,7 +1,8 @@
 import { FC, FormEvent, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Logo from "../Components/Logo/Logo"
-import { loginFx } from "../store/api"
+import { fetchUserFx, loginFx } from "../store/api"
+import { $user } from "../store/store"
 
 const SingIn: FC = () => {
 
@@ -14,14 +15,17 @@ const SingIn: FC = () => {
     if (!email || !password) return
 
     loginFx({ email, password })
+    navigateToMain()
   }
   
   const navigate = useNavigate();
-  const handleClick = () => {
-    if (email && password) {
-      navigate("/");
+  const navigateToMain = () => {
+    fetchUserFx()
+    if ($user) {
+      navigate('/')
     }
   }
+
 
   return (
     <>
@@ -45,7 +49,7 @@ const SingIn: FC = () => {
               </div>
             </div>
             <div className="sign-in__submit">
-              <button className="sign-in__btn" type="submit" onClick={handleClick}>Sign in</button>
+              <button className="sign-in__btn" type="submit" >Sign in</button>
             </div>
           </form>
         </div>
