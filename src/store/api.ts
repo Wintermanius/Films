@@ -4,6 +4,7 @@ import $axios from "../services/axios";
 import { UserType } from "../types/userType";
 import { dropToken, saveToken } from "../services/token";
 import { LoginFormType } from "../types/loginFormType";
+import { ReviewType } from "../types/review-type";
 
 export const fetchFilmsFx = createEffect(async () => {
   const response = await $axios.get('/films')
@@ -15,7 +16,7 @@ export const fetchPromoFilmFx = createEffect(async () => {
   return response.data
 })
 
-export const fetchSimilarFilmsFx = createEffect<{ filmId: number }, FilmType[], Error>(async ({ filmId: filmId}) => {
+export const fetchSimilarFilmsFx = createEffect<{ filmId: number }, FilmType[], Error>(async ({ filmId }) => {
   const response = await $axios.get(`/films/${filmId}/similar`)
   return response.data
 })
@@ -34,4 +35,9 @@ export const fetchUserFx = createEffect<void , UserType, Error>(async () => {
 export const logoutFx = createEffect<void, void, Error>(async () => {
   await $axios.delete('/logout')
   dropToken()
+})
+
+export const fetchReviewsFx = createEffect<{ filmId: number } , ReviewType[], Error>(async ({ filmId }) => {
+  const response = await $axios.get(`/comments/${filmId}`)
+  return response.data
 })

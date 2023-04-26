@@ -1,8 +1,9 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import styled from "styled-components"
 import { FilmType } from "../../types/film-type"
+import { Link } from "react-router-dom"
 
-const SpanStyled = styled.span`
+const SpanStyled = styled(Link)`
   margin-right: 20px;
   margin-bottom: 20px;
   &[href] {
@@ -30,7 +31,7 @@ const CatalogGenres: FC<CatalogGenresProps> = ({onClickGenre, films}) => {
     <>
       { filteredFilmsGenres.map((item) => 
       <li className="catalog__genres-item" key={item}>
-        <SpanStyled className="catalog__genres-link" onClick={() => onClickGenre && onClickGenre(item)}>{item}</SpanStyled>
+        <SpanStyled to='#' className="catalog__genres-link" onClick={() => onClickGenre && onClickGenre(item)}>{item}</SpanStyled>
       </li>) }
     </>
   )

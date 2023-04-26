@@ -3,9 +3,9 @@ import FilmList from "../FilmList/FilmList"
 import { FilmType } from "../../types/film-type"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import CatalogGenresItem from "../CatalogGenres/CatalogGenres"
+import CatalogGenres from "../CatalogGenres/CatalogGenres"
 
-const SpanStyled = styled.span`
+const SpanStyled = styled(Link)`
   margin-right: 20px;
   margin-bottom: 20px;
   &[href] {
@@ -30,8 +30,7 @@ const FilterFilms: FC<FilterFilmsProps> = ({films }) => {
 
   const [filmGenre, setFilmGenre] = useState<string>()
 
-  const genreFilmsList = films.filter(film => filmGenre ? film.genre === filmGenre : film.genre === film.genre)
-
+  const genreFilmsList = films.filter(film => filmGenre ? film.genre === filmGenre : film.genre)
   
   return (
     <div className="page-content">
@@ -39,9 +38,9 @@ const FilterFilms: FC<FilterFilmsProps> = ({films }) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <UL className="catalog__genres-list">
             <li className="catalog__genres-item" onClick={() => setFilmGenre('')}>
-              <SpanStyled className="catalog__genres-link">All genres</SpanStyled>
+              <SpanStyled to='#' className="catalog__genres-link">All genres</SpanStyled>
             </li>
-            <CatalogGenresItem films={films} onClickGenre={setFilmGenre} />
+            <CatalogGenres films={films} onClickGenre={setFilmGenre} />
           </UL>
 
           <div className="catalog__films-list">

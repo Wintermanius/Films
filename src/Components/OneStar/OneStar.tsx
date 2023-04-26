@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from "react"
+import { FC } from "react"
 import { RatingType } from "../../types/rating-type"
 
 type OneStarProps = {
@@ -8,7 +8,7 @@ type OneStarProps = {
 }
 
 const OneStar: FC<OneStarProps> = ({checked, stars, onChange}) => {
-  const {id, value, rating, star} = stars
+  const {id, value, rating} = stars
 
   return (
     <>

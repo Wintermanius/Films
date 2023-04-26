@@ -1,17 +1,37 @@
-import { FC, useEffect } from "react"
+import { FC, useEffect, useState } from "react"
 import Header from "../Components/Header/Header"
 import { Link, useParams } from "react-router-dom"
 import { FilmType } from "../types/film-type"
 import FilmList from "../Components/FilmList/FilmList"
-import { fetchSimilarFilmsFx } from "../store/api"
-import { useUnit } from "effector-react"
-import { $similarFilms } from "../store/store"
+import { fetchReviewsFx, fetchSimilarFilmsFx } from "../store/api"
+import { useStore, useUnit } from "effector-react"
+import { $reviews, $similarFilms } from "../store/store"
+import { UserType } from "../types/userType"
+import Details from "../Components/Details/Details"
+import Overview from "../Components/Overview/Overview"
+import ReviewList from "../Components/Reviews/ReviewList"
+import styled from "styled-components"
+
+const LinkStyled = styled(Link)`
+  width: 100px;
+  text-align: center;
+  &[href] {
+      &:focus {
+        font-weight: bold;
+        text-shadow: 0 0 .9px #DFCF77, 0 0 .9px #DFCF77, 0 0 .9px #DFCF77;
+        ::after {
+          display: block;
+        }
+      }
+  }
+`
 
 type MoviePageProps = {
   films: FilmType[]
+  user?: UserType | null
 }
 
-const MoviePage: FC<MoviePageProps> = ({films}) => {
+const MoviePage: FC<MoviePageProps> = ({films, user}) => {
   const params = useParams()
   const similarFilms = useUnit($similarFilms)
   
@@ -19,7 +39,19 @@ const MoviePage: FC<MoviePageProps> = ({films}) => {
 
   useEffect(() => {
     fetchSimilarFilmsFx({ filmId: Number(params.id) })
+    fetchReviewsFx({ filmId: Number(params.id) })
   }, [params.id])
+
+  const reviews1 = useStore($reviews)
+
+  const [overview, setOverview] = useState<boolean>(true)
+  const [details, setDetails] = useState<boolean>(false)
+  const [reviews, setReviews] = useState<boolean>(false)
+
+  const getOverview = () => {setOverview(true); setDetails(false); setReviews(false)}
+  const getDetails = () => {setDetails(true); setOverview(false); setReviews(false)}
+  const getReviews = () => {setReviews(true); setOverview(false); setDetails(false)}
+  
 
   return (
     <>
@@ -33,7 +65,7 @@ const MoviePage: FC<MoviePageProps> = ({films}) => {
 
             <h1 className="visually-hidden">WTW</h1>
 
-            <Header />
+            <Header user={user} />
 
             <div className="film-card__wrap">
               <div className="film-card__desc">
@@ -52,15 +84,15 @@ const MoviePage: FC<MoviePageProps> = ({films}) => {
                     <span>Play</span>
                   </Link>
 
-                  <button className="btn btn--list film-card__button" type="button">
+                  {user && <button className="btn btn--list film-card__button" type="button">
                     <svg viewBox="0 0 19 20" width="19" height="20">
                       <use xlinkHref="#add"></use>
                     </svg>
                     <span>My list</span>
                     <span className="film-card__count">9</span>
-                  </button>
+                  </button>}
 
-                  <Link to={`/films/${params.id}/review`} className="btn film-card__button">Add review</Link>
+                  {user && <Link to={`/films/${params.id}/review`} className="btn film-card__button">Add review</Link>}
                 </div>
               </div>
             </div>
@@ -75,34 +107,22 @@ const MoviePage: FC<MoviePageProps> = ({films}) => {
               <div className="film-card__desc">
                 <nav className="film-nav film-card__nav">
                   <ul className="film-nav__list">
-                    <li className="film-nav__item film-nav__item--active">
-                      <a href="#" className="film-nav__link">Overview</a>
+                    <li className="film-nav__item">
+                      <LinkStyled to="#" className="film-nav__link" onClick={getOverview}>Overview</LinkStyled>
                     </li>
                     <li className="film-nav__item">
-                      <a href="#" className="film-nav__link">Details</a>
+                      <LinkStyled to="#" className="film-nav__link" onClick={getDetails}>Details</LinkStyled>
                     </li>
                     <li className="film-nav__item">
-                      <a href="#" className="film-nav__link">Reviews</a>
+                      <LinkStyled to="#" className="film-nav__link" onClick={getReviews}>Reviews</LinkStyled>
                     </li>
                   </ul>
                 </nav>
 
-                <div className="film-rating">
-                  <div className="film-rating__score">{film.rating}</div>
-                  <p className="film-rating__meta">
-                    <span className="film-rating__level">Very good</span>
-                    <span className="film-rating__count">240 ratings</span>
-                  </p>
-                </div>
-
-                <div className="film-card__text">
-        
-                  {film.description}
-
-                  <p className="film-card__director"><strong>Director: {film.director}</strong></p>
-
-                  <p className="film-card__starring"><strong>Starring: {film.starring[0] + ', ' + film.starring[1] + ', ' + film.starring[2]} and other</strong></p>
-                </div>
+                {overview && <Overview film={film} />}
+                {details && <Details film={film} />}
+                {reviews && <ReviewList reviews={reviews1} />}
+                
               </div>
             </div>
           </div>

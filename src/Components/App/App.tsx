@@ -39,7 +39,7 @@ const App: FC = () => {
                   </PrivateRoute>
                  }
           /> 
-          <Route path={AppRoute.Film} element={<MoviePage films={films1}  />}/>
+          <Route path={AppRoute.Film} element={<MoviePage user={user1} films={films1}  />}/>
           <Route path={AppRoute.AddReview} element={<AddReview films={films1} />}/>
           <Route path={AppRoute.Player} element={<Player films={films1} />}/>
         </Routes>

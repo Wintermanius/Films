@@ -2,9 +2,7 @@ import { FC } from "react"
 import { Link, useParams } from "react-router-dom"
 import Logo from "../Components/Logo/Logo"
 import CommentForm from "../Components/CommentForm/CommentForm"
-import BGtGBh from "../assets/img/bg-the-grand-budapest-hotel.jpg"
 import Avatar from "../assets/img/avatar.jpg"
-import tGBhp from "../assets/img/the-grand-budapest-hotel-poster.jpg"
 import { FilmType } from "../types/film-type"
 
 type AddReviewProps = {
