@@ -4,7 +4,7 @@ import { RatingType } from "../../types/rating-type"
 type OneStarProps = {
   checked: boolean
   stars: RatingType
-  onChange: (id: string) => void
+  onChange: (rating: number) => void
 }
 
 const OneStar: FC<OneStarProps> = ({checked, stars, onChange}) => {
@@ -18,8 +18,8 @@ const OneStar: FC<OneStarProps> = ({checked, stars, onChange}) => {
         name="rating"
         checked={checked}
         value={value}
-        onChange={() => onChange(id)} />
-      <label className="rating__label" onClick={() => onChange(id)}>Rating {rating}</label>
+      />
+      <label className="rating__label" onClick={() => onChange(rating)}>Rating {rating}</label>
     </>
   )
 }

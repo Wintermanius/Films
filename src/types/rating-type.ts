@@ -1,6 +1,6 @@
 export type RatingType = {
   id: string
   value: string
-  rating: string
+  rating: number
   star: string
 }

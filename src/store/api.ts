@@ -5,6 +5,7 @@ import { UserType } from "../types/userType";
 import { dropToken, saveToken } from "../services/token";
 import { LoginFormType } from "../types/loginFormType";
 import { ReviewType } from "../types/review-type";
+import { CommentType } from "../types/comment-type";
 
 export const fetchFilmsFx = createEffect(async () => {
   const response = await $axios.get('/films')
@@ -39,5 +40,10 @@ export const logoutFx = createEffect<void, void, Error>(async () => {
 
 export const fetchReviewsFx = createEffect<{ filmId: number } , ReviewType[], Error>(async ({ filmId }) => {
   const response = await $axios.get(`/comments/${filmId}`)
+  return response.data
+})
+
+export const addCommentFx = createEffect<{filmId: number, formData: CommentType}, ReviewType[], Error>(async ({filmId, formData }) => {
+  const response = await $axios.post(`/comments/${filmId}`, formData)
   return response.data
 })

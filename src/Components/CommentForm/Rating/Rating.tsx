@@ -1,14 +1,22 @@
 import { FC, useState } from "react";
 import OneStar from "../../OneStar/OneStar";
 
-const Rating: FC = () => {
-  const [activeId, setActiveId] = useState<string>('')
+type RatingProps = {
+  onChangeRating: (rating: number) => void
+}
+
+const Rating: FC<RatingProps> = ({onChangeRating}) => {
+  const [active, setActive] = useState<number>(0)
+  
   return (
   <>
-    {Array(10).fill('').map((_, index) => <OneStar checked={activeId === `star-${index + 1}`} onChange={setActiveId} key={index} stars={{
+    {Array(10).fill('').map((_, index) => <OneStar checked={active === index + 1} onChange={(r) => { 
+      setActive(r)
+      onChangeRating(r)
+    }} key={index} stars={{
       id: `star-${index + 1}`,
       value: `${index + 1}`,
-      rating: `${index + 1}`,
+      rating: index + 1,
       star: `star-${index + 1}`
     }} />).reverse()}
   </>

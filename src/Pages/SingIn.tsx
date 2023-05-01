@@ -9,7 +9,7 @@ const SingIn: FC = () => {
   const[email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit: React.FormEventHandler = (e) => {
     e.preventDefault()
 
     if (!email || !password) return
