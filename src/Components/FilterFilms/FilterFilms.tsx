@@ -44,13 +44,8 @@ const FilterFilms: FC<FilterFilmsProps> = ({ films }) => {
             <CatalogGenres activeGenre={filmGenre} films={films} onClickGenre={setFilmGenre} />
           </GenreList>
 
-          <div className="catalog__films-list">
-            <FilmList films={genreFilmsList}  />
-          </div>
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <FilmList films={genreFilmsList}  />
+          
         </section>
       </div>
   )
