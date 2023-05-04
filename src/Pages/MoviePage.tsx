@@ -3,9 +3,9 @@ import Header from "../Components/Header/Header"
 import { Link, useParams } from "react-router-dom"
 import { FilmType } from "../types/film-type"
 import FilmList from "../Components/FilmList/FilmList"
-import { fetchReviewsFx, fetchSimilarFilmsFx } from "../store/api"
+import { changeStatusFx, fetchReviewsFx, fetchSimilarFilmsFx } from "../store/api"
 import { useStore, useUnit } from "effector-react"
-import { $reviews, $similarFilms } from "../store/store"
+import { $films, $reviews, $similarFilms } from "../store/store"
 import { UserType } from "../types/userType"
 import Details from "../Components/Details/Details"
 import Overview from "../Components/Overview/Overview"
@@ -52,7 +52,12 @@ const MoviePage: FC<MoviePageProps> = ({films, user}) => {
   const getDetails = () => {setDetails(true); setOverview(false); setReviews(false)}
   const getReviews = () => {setReviews(true); setOverview(false); setDetails(false)}
   
-
+  const changeStatus = (value: boolean) => {
+    if (film) {
+      changeStatusFx({filmId: film.id, status: value ? 1 : 0})
+    }
+  }
+  
   return (
     <>
       {film && 
@@ -84,7 +89,7 @@ const MoviePage: FC<MoviePageProps> = ({films, user}) => {
                     <span>Play</span>
                   </Link>
 
-                  {user && <button className="btn btn--list film-card__button" type="button">
+                  {user && <button onClick={() => changeStatus(!film.isFavorite)} className="btn btn--list film-card__button" type="button">
                     <svg viewBox="0 0 19 20" width="19" height="20">
                       <use xlinkHref="#add"></use>
                     </svg>

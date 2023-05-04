@@ -21,7 +21,9 @@ const Header: FC<HeaderProps> = ({user}) => {
       <ul className="user-block">
         <li className="user-block__item">
           <div className="user-block__avatar">
-            <img src={user ? user.avatarUrl : Avatar} alt="User avatar" width="63" height="63" />
+            {user ? <Link to='/mylist'>
+              <img src={user ? user.avatarUrl : Avatar} alt="User avatar" width="63" height="63" />
+            </Link> : <img src={Avatar} alt="User avatar" width="63" height="63" />}
           </div>
         </li>
         <li className="user-block__item">

@@ -34,7 +34,7 @@ const App: FC = () => {
           <Route path={AppRoute.SingIn} element={<SingIn />}/>
           <Route path={AppRoute.MyList} 
                  element={
-                  <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+                  <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
                     <MyList />
                   </PrivateRoute>
                  }

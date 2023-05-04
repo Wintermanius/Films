@@ -1,10 +1,20 @@
-import { FC } from "react"
+import { FC, useEffect } from "react"
 import Logo from "../Components/Logo/Logo"
 import FilmList from "../Components/FilmList/FilmList"
+import { getFavoriteFx } from "../store/api"
+import { useStore } from "effector-react"
+import { $favoriteFilms } from "../store/store"
 
 
 
 const MyList: FC = () => {
+
+  useEffect(() => {
+    getFavoriteFx()
+  }, [])
+
+  const favorites = useStore($favoriteFilms)
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -27,7 +37,7 @@ const MyList: FC = () => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
-        <FilmList films={[]} />
+          <FilmList films={favorites} />
         </div>
       </section>
 

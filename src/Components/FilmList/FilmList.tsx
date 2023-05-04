@@ -8,7 +8,6 @@ type FilmListProps = {
 
 const FilmList: FC<FilmListProps> = ({ films }) => {
   const [filmsLength, setFilmsLength] = useState<number>(8)
-  console.log(filmsLength)
   
   return (
     <>

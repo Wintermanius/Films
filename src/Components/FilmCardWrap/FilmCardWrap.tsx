@@ -3,6 +3,7 @@ import { FilmType } from "../../types/film-type"
 import Header from "../Header/Header"
 import { Link } from "react-router-dom"
 import { UserType } from "../../types/userType"
+import { changeStatusFx } from "../../store/api"
 
 type FilmCardWrapProps = {
   film: FilmType
@@ -11,8 +12,12 @@ type FilmCardWrapProps = {
 
 const FilmCardWrap: FC<FilmCardWrapProps> = ({film, user}) => {
 
-  const {posterImage, name, genre, released, backgroundImage, id } = film
+  const {posterImage, name, genre, released, backgroundImage, id, isFavorite} = film
 
+  const changeStatus = (value: boolean) => {
+    changeStatusFx({filmId: id, status: value ? 1 : 0})
+  }
+  
   return (
     <>
       <div className="film-card__bg">
@@ -45,7 +50,7 @@ const FilmCardWrap: FC<FilmCardWrapProps> = ({film, user}) => {
                 <span>Play</span>
               </Link>
 
-              {user && <button className="btn btn--list film-card__button" type="button">
+              {user && <button className="btn btn--list film-card__button" type="button" onClick={() => changeStatus(!isFavorite)}>
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>
                 </svg>

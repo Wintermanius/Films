@@ -38,12 +38,22 @@ export const logoutFx = createEffect<void, void, Error>(async () => {
   dropToken()
 })
 
-export const fetchReviewsFx = createEffect<{ filmId: number } , ReviewType[], Error>(async ({ filmId }) => {
+export const fetchReviewsFx = createEffect<{ filmId: number }, ReviewType[], Error>(async ({ filmId }) => {
   const response = await $axios.get(`/comments/${filmId}`)
   return response.data
 })
 
 export const addCommentFx = createEffect<{filmId: number, formData: CommentType}, ReviewType[], Error>(async ({filmId, formData }) => {
   const response = await $axios.post(`/comments/${filmId}`, formData)
+  return response.data
+})
+
+export const changeStatusFx = createEffect<{ filmId: number, status: number }, FilmType, Error>(async({filmId, status}) => {
+  const response = await $axios.post(`/favorite/${filmId}/${status}`)
+  return response.data
+})
+
+export const getFavoriteFx = createEffect<void, FilmType[], Error>(async () => {
+  const response = await $axios.get(`/favorite`)
   return response.data
 })
