@@ -1,5 +1,5 @@
 import { createStore } from "effector";
-import { fetchFilmsFx, loginFx, fetchPromoFilmFx, fetchSimilarFilmsFx, fetchUserFx, logoutFx, fetchReviewsFx, addCommentFx, changeStatusFx, getFavoriteFx } from "./api";
+import { fetchFilmsFx, loginFx, fetchPromoFilmFx, fetchSimilarFilmsFx, fetchUserFx, logoutFx, fetchReviewsFx, addCommentFx, changeStatusFx, fetchFavoriteFx } from "./api";
 import { FilmType } from "../types/film-type";
 import { UserType } from "../types/userType";
 import { debug } from "patronum";
@@ -17,6 +17,6 @@ export const $user = createStore<UserType | null>(null).on([loginFx.doneData, fe
 
 export const $reviews = createStore<ReviewType[]>([]).on([fetchReviewsFx.doneData, addCommentFx.doneData], (_, reviews) => reviews)
 
-export const $favoriteFilms = createStore<FilmType[]>([]).on(getFavoriteFx.doneData, (_, films) => films)
+export const $favoriteFilms = createStore<FilmType[]>([]).on(fetchFavoriteFx.doneData, (_, films) => films)
 
 debug($user)

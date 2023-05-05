@@ -31,7 +31,7 @@ const CommentForm: FC = () => {
       </div>
 
       <div className="add-review__text">
-        <textarea 
+        <textarea
           onChange={fieldChangeHandle} 
           value={comment} 
           className="add-review__textarea" 

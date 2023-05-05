@@ -11,6 +11,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute"
 import { useStore } from "effector-react"
 import { $film, $films, $user } from "../../store/store"
 import { fetchFilmsFx, fetchPromoFilmFx, fetchUserFx } from "../../store/api"
+import NotFound from "../../Pages/NotFound"
 
 
 
@@ -42,6 +43,7 @@ const App: FC = () => {
           <Route path={AppRoute.Film} element={<MoviePage user={user1} films={films1}  />}/>
           <Route path={AppRoute.AddReview} element={<AddReview films={films1} />}/>
           <Route path={AppRoute.Player} element={<Player films={films1} />}/>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
   )

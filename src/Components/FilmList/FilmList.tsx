@@ -12,7 +12,7 @@ const FilmList: FC<FilmListProps> = ({ films }) => {
   return (
     <>
       <div className="catalog__films-list">
-        { films.filter((_, index) => index + 1 < filmsLength).map((film) => <FilmCard key={film.id} film={film} />) }
+        { films.filter((_, index) => index < filmsLength).map((film) => <FilmCard key={film.id} film={film} />) }
       </div>
       
       {filmsLength < 25 ?<div className="catalog__more">

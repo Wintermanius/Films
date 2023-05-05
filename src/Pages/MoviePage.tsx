@@ -3,9 +3,9 @@ import Header from "../Components/Header/Header"
 import { Link, useParams } from "react-router-dom"
 import { FilmType } from "../types/film-type"
 import FilmList from "../Components/FilmList/FilmList"
-import { changeStatusFx, fetchReviewsFx, fetchSimilarFilmsFx } from "../store/api"
+import { changeStatusFx, fetchFavoriteFx, fetchReviewsFx, fetchSimilarFilmsFx } from "../store/api"
 import { useStore, useUnit } from "effector-react"
-import { $films, $reviews, $similarFilms } from "../store/store"
+import { $favoriteFilms, $films, $reviews, $similarFilms } from "../store/store"
 import { UserType } from "../types/userType"
 import Details from "../Components/Details/Details"
 import Overview from "../Components/Overview/Overview"
@@ -58,6 +58,12 @@ const MoviePage: FC<MoviePageProps> = ({films, user}) => {
     }
   }
   
+  const favoriteFilms = useUnit($favoriteFilms)
+
+  useEffect(() => {
+    fetchFavoriteFx()
+  }, [favoriteFilms])
+
   return (
     <>
       {film && 
@@ -89,15 +95,23 @@ const MoviePage: FC<MoviePageProps> = ({films, user}) => {
                     <span>Play</span>
                   </Link>
 
-                  {user && <button onClick={() => changeStatus(!film.isFavorite)} className="btn btn--list film-card__button" type="button">
+                  {user ? <button onClick={() => changeStatus(!film.isFavorite)} className="btn btn--list film-card__button" type="button">
                     <svg viewBox="0 0 19 20" width="19" height="20">
                       <use xlinkHref="#add"></use>
                     </svg>
                     <span>My list</span>
-                    <span className="film-card__count">9</span>
-                  </button>}
+                    <span className="film-card__count">{favoriteFilms.length}</span>
+                  </button> :
+                  <Link to='/login' onClick={() => changeStatus(!film.isFavorite)} className="btn btn--list film-card__button" type="button">
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                    <span>My list</span>
+                    <span className="film-card__count"></span>
+                  </Link>}
 
-                  {user && <Link to={`/films/${params.id}/review`} className="btn film-card__button">Add review</Link>}
+                  {user ? <Link to={`/films/${params.id}/review`} className="btn film-card__button">Add review</Link> :
+                    <Link to='/login' className="btn film-card__button">Add review</Link>}
                 </div>
               </div>
             </div>

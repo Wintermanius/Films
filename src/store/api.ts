@@ -53,7 +53,7 @@ export const changeStatusFx = createEffect<{ filmId: number, status: number }, F
   return response.data
 })
 
-export const getFavoriteFx = createEffect<void, FilmType[], Error>(async () => {
+export const fetchFavoriteFx = createEffect<void, FilmType[], Error>(async () => {
   const response = await $axios.get(`/favorite`)
   return response.data
 })

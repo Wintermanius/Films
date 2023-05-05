@@ -1,16 +1,14 @@
 import { FC, useEffect } from "react"
 import Logo from "../Components/Logo/Logo"
 import FilmList from "../Components/FilmList/FilmList"
-import { getFavoriteFx } from "../store/api"
+import { fetchFavoriteFx } from "../store/api"
 import { useStore } from "effector-react"
 import { $favoriteFilms } from "../store/store"
-
-
 
 const MyList: FC = () => {
 
   useEffect(() => {
-    getFavoriteFx()
+    fetchFavoriteFx()
   }, [])
 
   const favorites = useStore($favoriteFilms)
