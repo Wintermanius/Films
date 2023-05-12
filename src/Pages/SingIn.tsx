@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from "react"
+import { FC, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Logo from "../Components/Logo/Logo"
 import { fetchUserFx, loginFx } from "../store/api"
@@ -25,7 +25,6 @@ const SingIn: FC = () => {
       navigate('/')
     }
   }
-
 
   return (
     <>

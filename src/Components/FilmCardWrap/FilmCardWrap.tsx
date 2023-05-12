@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect } from "react"
 import { FilmType } from "../../types/film-type"
 import Header from "../Header/Header"
 import { Link } from "react-router-dom"

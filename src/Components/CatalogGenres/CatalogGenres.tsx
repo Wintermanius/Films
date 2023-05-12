@@ -1,7 +1,6 @@
 import { FC } from "react"
 import styled, { css } from "styled-components"
 import { FilmType } from "../../types/film-type"
-import { Link } from "react-router-dom"
 
 const SpanStyled = styled.span<{ active: boolean }>`
   margin-right: 20px;

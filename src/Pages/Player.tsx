@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { FilmType } from "../types/film-type"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 type PlayerProps = {
   films: FilmType[]
@@ -16,6 +16,9 @@ const Player: FC<PlayerProps> = ({films}) => {
     <>
       {film && <>
         <div className="player">
+          <Link to='/'>
+            <button type="button" className="player__exit">Exit</button>
+          </Link>
         <video controls src={film.videoLink} className="player__video" poster={film.previewImage} ></video>
       </div>
       </>}

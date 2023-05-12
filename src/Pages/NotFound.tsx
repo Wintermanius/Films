@@ -1,13 +1,7 @@
 import { FC } from "react"
-import Logo from "../Components/Logo/Logo"
 import { Link } from "react-router-dom"
 
-
 const NotFound: FC = () => {
-
-  
-
-
   return (
     <>
       <div className="user-page">

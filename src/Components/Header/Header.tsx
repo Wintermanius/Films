@@ -3,7 +3,6 @@ import Logo from "../Logo/Logo"
 import Avatar from "../../assets/img/avatar.jpg"
 import { Link } from "react-router-dom"
 import { UserType } from "../../types/userType"
-import { loginFx, logoutFx } from "../../store/api"
 import TmpSingIn from "../Template/SingIn"
 import TmpSingOut from "../Template/SingOut"
 

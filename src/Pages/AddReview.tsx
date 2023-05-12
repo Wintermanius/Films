@@ -4,12 +4,16 @@ import Logo from "../Components/Logo/Logo"
 import CommentForm from "../Components/CommentForm/CommentForm"
 import Avatar from "../assets/img/avatar.jpg"
 import { FilmType } from "../types/film-type"
+import TmpSingOut from "../Components/Template/SingOut"
+import TmpSingIn from "../Components/Template/SingIn"
+import { UserType } from "../types/userType"
 
 type AddReviewProps = {
   films: FilmType[]
+  user? : UserType | null
 }
 
-const AddReview: FC<AddReviewProps> = ({films}) => {
+const AddReview: FC<AddReviewProps> = ({films, user}) => {
 
   const params = useParams()
 
@@ -44,11 +48,13 @@ const AddReview: FC<AddReviewProps> = ({films}) => {
             <ul className="user-block">
               <li className="user-block__item">
                 <div className="user-block__avatar">
-                  <img src={Avatar} alt="User avatar" width="63" height="63" />
+                  {user ? <Link to='/mylist'>
+                    <img src={user ? user.avatarUrl : Avatar} alt="User avatar" width="63" height="63" />
+                  </Link> : <Link to='/login'><img src={Avatar} alt="User avatar" width="63" height="63" /></Link>}
                 </div>
               </li>
               <li className="user-block__item">
-                <a className="user-block__link">Sign out</a>
+                {user ? <TmpSingOut /> : <TmpSingIn />}
               </li>
             </ul>
           </header>

@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useRef, useState } from "react"
+import { FC, MouseEvent, useState } from "react"
 import { FilmType } from "../../types/film-type"
 import VideoPlayer from "../PreviewVideoPlayer/PreviewVideoPlayer"
 import { Link } from "react-router-dom"
@@ -10,9 +10,6 @@ type FilmCardProps = {
 const FilmCard: FC<FilmCardProps> = ({ film }) => {
   const [isPlay, setIsPlay] = useState<boolean>(false)
   const { name, id } = film
-
-
-  const videoRef = useRef(null)
 
   function onMouseOverHandler(e: MouseEvent) {
     setIsPlay(true)

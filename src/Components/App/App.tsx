@@ -36,12 +36,12 @@ const App: FC = () => {
           <Route path={AppRoute.MyList} 
                  element={
                   <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-                    <MyList />
+                    <MyList user={user1}/>
                   </PrivateRoute>
                  }
           /> 
           <Route path={AppRoute.Film} element={<MoviePage user={user1} films={films1}  />}/>
-          <Route path={AppRoute.AddReview} element={<AddReview films={films1} />}/>
+          <Route path={AppRoute.AddReview} element={<AddReview user={user1} films={films1} />}/>
           <Route path={AppRoute.Player} element={<Player films={films1} />}/>
           <Route path="*" element={<NotFound />} />
         </Routes>
